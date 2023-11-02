@@ -1,0 +1,283 @@
+.shop {
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 3rem;
+  }
+  &__products_list {
+    padding: 4rem;
+    padding-top: 1rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  &__product_item {
+    max-width: 16.95rem;
+    max-height: 24.4rem;
+    min-height: 24.4rem;
+    background: white;
+    &:hover {
+      background: rgba(0,0,0,0.08);
+    }
+  }
+  &__item_img {
+    width: 16.8rem;
+    height: 18.8rem;
+    border: 1px dashed grey;
+  }
+
+  &__category_img {
+    width: 16.8rem;
+    height: 18.8rem;
+    border: 1px solid grey;
+    &__hover {
+      filter: invert(0.05);
+    }
+  }
+  &__item_name {
+    padding-top: 15px;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-family: Chandas;
+    color: #696969;
+    text-align: center;
+  }
+  &__category_name {
+    padding-top: 15px;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-family: Chandas;
+    color: #696969;
+    text-align: center;
+    &:hover {
+      color: rgba(105,105,105,0.5);
+    }
+  }
+  &__item_price {
+    font-size: 14px;
+    font-family: Chandas;
+    text-align: center;
+  }
+
+  &__toolbar {
+    padding: 1rem 4rem;
+    font-size: 14px;
+    font-family: Chandas;
+    display: flex;
+    justify-content: end;
+    flex-flow: row wrap;
+    &__view {
+      padding: 1rem 4rem;
+      font-size: 14px;
+      font-family: Chandas;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+    }
+  }
+
+  &__toolbar_right_viev {
+    width: 6rem;
+    height: 3rem;
+    display: flex;
+  }
+
+  &__button_scale {
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid lightgray;
+  }
+
+  &__bag_img {
+    margin: 6px;
+    width: 2rem;
+    height: 2rem;
+    &:hover{
+      filter: invert(0.8);
+    }
+  }
+
+  &__full_img {
+    margin: 6px;
+    width: 2rem;
+    height: 2rem;
+    filter: invert(0.5);
+    &:hover{
+      filter: invert(0.8);
+    }
+  }
+
+  &__back_img {
+    margin: 6px;
+    width: 2rem;
+    height: 1.2rem;
+    color: gray;
+    &:hover .shop__button_back{
+      filter: invert(0.8);
+    }
+  }
+
+  &__bag_quantity {
+    content:"100";
+    position: relative;
+    background: rgba(0,0,0,0.3);
+    height:1.7rem;
+    top:-58px;
+    right:-20px;
+    width:1.7rem;
+    text-align: center;
+    font-size: 14px;
+    font-family: Chandas;
+    border-radius: 5px;
+    color:white;
+    border:1px solid grey;
+  }
+
+  &__button_filter {
+    width: 9rem;
+    height: 3rem;
+    border: 1px solid lightgray;
+    font-size: 14px;
+    padding: 0.5rem;
+    font-family: Chandas;
+    text-align: center;
+    &:hover{
+      color: gray;
+    }
+  }
+
+  &__button_back {
+    width: 12rem;
+    padding: 0.5rem;
+    display: flex;
+    height: 3rem;
+    border: 1px solid lightgray;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Chandas;
+    color: #343434;
+
+    &:hover{
+      filter: invert(1);
+      border: 1px solid #343434;
+      color: #484848;
+    }
+    &__text .shop__button_back {
+      width: 9rem;
+      color: gray;
+    }
+  }
+
+  &__product_view_body {
+    display: flex;
+    padding-top: 4rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    &__side_left {
+      width: 50%;
+      min-height: calc(100vh - 5rem);
+      display: flex;
+      justify-content: space-between;
+    }
+    &__side_right {
+      width: 50%;
+      padding: 4rem;
+    }
+  }
+
+  &__color_box {
+    width: 8rem;
+    height: 8rem;
+    border: 2px solid black;
+  }
+
+  &__item_img_view {
+    width: calc(100% - 9rem);
+    height: 80%;
+  }
+
+  &__text_view {
+    font-family: Chandas;
+    &__header {
+        text-transform: uppercase;
+        font-size: 24px;
+        font-weight: bold;
+        color: black;
+        text-align: center;
+    }
+    &__description {
+      padding-top: 4rem;
+      padding-bottom: 2rem;
+      font-weight: 600;
+      font-size: 16px;
+      color: gray;
+      line-height: 1.8;
+    }
+  }
+
+  &__price {
+    font-family: "Nimbus Roman";
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    &__sale{
+      text-decoration-line: line-through;
+      padding-left: 1rem;
+      padding-top: 6px;
+      font-size: 18px;
+      color: gray;
+    }
+  }
+
+  &__price_box{
+    display: flex;
+    padding-top: 2rem;
+  }
+
+  &__input_box{
+    display: flex;
+    padding-top: 10rem;
+    &__body {
+      margin-top: 5px;
+      height: 53px;
+      display: flex;
+      border: 1px solid rgba(211, 211, 211, 0.5);
+    }
+  }
+
+  &__input_number {
+    height: 50px;
+    width: 50px;
+    font-size: 24px;
+    text-align: center;
+    border: none;
+    &__button {
+      user-select: none;
+      cursor: default;
+      width: 50px;
+      padding-top: 14px;
+      text-align: center;
+      &:hover {
+        background: rgba(0,0,0,0.08);
+      }
+    }
+  }
+
+  &__botton_add_to_cart {
+    font-family: Chandas;
+    height: 63px;
+    margin-left: 20px;
+    width: 200px;
+    padding: 12px;
+    text-align: center;
+    color: white;
+    background: black;
+    border: 1px solid rgba(211, 211, 211, 0.5);
+    user-select: none;
+    cursor: default;
+    &:hover {
+      filter: invert(0.2);
+    }
+  }
+}
