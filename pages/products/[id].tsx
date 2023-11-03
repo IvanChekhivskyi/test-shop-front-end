@@ -34,7 +34,7 @@ export default function ({product}) {
             <div className={styles.shop__product_view_body}>
                 <div className={styles.shop__product_view_body__side_left}>
                     <div className={styles.shop__color_box} style={{background:`${'gray'}`}}></div>
-                    <img alt={"img"} className={styles.shop__item_img} src={`http://127.0.0.1:8000${product.image_path}`}/>
+                    <img alt={"img"} className={styles.shop__item_img_view} src={`http://127.0.0.1:8000${product.image_path}`}/>
                 </div>
                 <div className={styles.shop__product_view_body__side_right}>
                     <div className={styles.shop__text_view__header}>{product.name}</div>
