@@ -1,19 +1,18 @@
 import styles from "../styles.module.scss";
 import Image from "next/image";
-import React, {useState} from "react";
+import React, {FC, useState} from "react";
 import { useRouter } from 'next/navigation'
+import Products from "../products";
 const bag = require('../../img/bag.png');
 const full = require('../../img/full-screen.png');
 const back = require('../../img/arrow-back.png');
 const img = require('../../img/sneakers.png');
 
 
-export default function () {
-    const {query} = useRouter()
+
+export default function ({product}) {
     const  [quantity, setQuantity] = useState<number>(1)
     const router = useRouter()
-
-
 
     return (
         <>
@@ -35,26 +34,17 @@ export default function () {
             <div className={styles.shop__product_view_body}>
                 <div className={styles.shop__product_view_body__side_left}>
                     <div className={styles.shop__color_box} style={{background:`${'gray'}`}}></div>
-                    <Image alt={"img"} className={styles.shop__item_img_view} src={img}/>
+                    <img alt={"img"} className={styles.shop__item_img} src={`http://127.0.0.1:8000${product.image_path}`}/>
                 </div>
                 <div className={styles.shop__product_view_body__side_right}>
-                    <div className={styles.shop__text_view__header}>silver-toned plimsolls</div>
-                    <div className={styles.shop__text_view__description}>
-                        Кроссовки из коллекции Armani Exchange. Модель выполнена из сочетания имитации замши и текстильного материала.
-                        - Круглый, уплотненный носок.
-                        - Уплотненный задник.
-                        - Модель со шнуровкой.
-                        - Резиновая подошва.
-                        - Длина стельки составляет: 28 см.
-                        - Параметры указаны для размера: 42.
-                        Состав:
-                        Голенище: Синтетический материал, Текстильный материал
-                        ID Товара: 9BYK-OBM0EA_99A
-                        Код производителя: XUX017.XCC68
-                    </div>
+                    <div className={styles.shop__text_view__header}>{product.name}</div>
+                    <div className={styles.shop__text_view__description}>{product.description}</div>
                     <div className={styles.shop__price_box}>
-                        <div className={styles.shop__price}>$5000</div>
-                        <div className={styles.shop__price__sale}>$5000</div>
+                        <div className={styles.shop__price}>${product.sale ? product.price/2 : product.price}</div>
+                        {product.sale
+                            ?   <div className={styles.shop__price__sale}>${product.price}</div>
+                            :   <></>
+                        }
                     </div>
                     <div className={styles.shop__input_box}>
                         <div className={styles.shop__input_box__body}>
@@ -74,3 +64,11 @@ export default function () {
         </>
     )
 };
+
+export async function getServerSideProps({params}) {
+    const response = await fetch(`http://127.0.0.1:8000/api/products/${params.id}`)
+    const product = await response.json()
+    return {
+        props: {product},
+    }
+}

@@ -1,13 +1,28 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from "./styles.module.scss";
 import Image from 'next/image';
 import {useRouter} from "next/router";
-const img = require('../img/sneakers.png');
 const bag = require('../img/bag.png');
 
+export interface Products {
+    readonly id: number;
+    readonly name: string;
+    readonly price: number;
+    readonly url_key: string;
+    readonly description: string;
+    readonly image_path: string;
+    readonly sale: boolean;
+    readonly created_at: Date;
+    readonly updated_at: Date;
+}
 
-const Products = () => {
+interface Props {
+    readonly products: Products[];
+}
+
+const Products: FC<Props> = ({products}) => {
     const router = useRouter()
+
     return (
         <>
             <div className={styles.shop__toolbar}>
@@ -53,75 +68,33 @@ const Products = () => {
                 </div>
             </div>
             <div className={styles.shop__products_list}>
-                <div className={styles.shop__product_item} onClick={() => router.push(`/products/${18}`)}>
-                    <Image alt={"img"} className={styles.shop__item_img} src={img}/>
-                    <div className={styles.shop__item_name}>silver-toned plimsolls</div>
-                    <div className={styles.shop__item_price}>${(1999).toFixed(2)}</div>
+                {products.map(e =>
+                <div key={e.id} className={styles.shop__product_item} onClick={() => router.push(`/products/${e.url_key}`)}>
+                    <img alt={"img"} className={styles.shop__item_img} src={`http://127.0.0.1:8000${e.image_path}`}/>
+                    <div className={styles.shop__item_name}>{e.name}</div>
+                    <div className={styles.shop__item_price_block}>
+                        {e.sale
+                            ?   <div className={styles.shop__item_price_sale}>${e.price}</div>
+                            :   <></>
+                        }
+                        <div className={styles.shop__item_price}>${e.sale ? e.price/2 : e.price}</div>
+                    </div>
+                    {e.sale ? <div className={styles.shop__sale_bage}>SALE 50%</div> : <></>}
                 </div>
-                <div className={styles.shop__product_item} onClick={() => router.push(`/products/${18}`)}>
-                    <Image alt={"img"} className={styles.shop__item_img} src={img}/>
-                    <div className={styles.shop__item_name}>silver-toned plimsolls</div>
-                    <div className={styles.shop__item_price}>${(1999).toFixed(2)}</div>
-                </div>
-                <div className={styles.shop__product_item} onClick={() => router.push(`/products/${18}`)}>
-                    <Image alt={"img"} className={styles.shop__item_img} src={img}/>
-                    <div className={styles.shop__item_name}>silver-toned plimsolls</div>
-                    <div className={styles.shop__item_price}>${(1999).toFixed(2)}</div>
-                </div>
-                <div className={styles.shop__product_item} onClick={() => router.push(`/products/${18}`)}>
-                    <Image alt={"img"} className={styles.shop__item_img} src={img}/>
-                    <div className={styles.shop__item_name}>silver-toned plimsolls</div>
-                    <div className={styles.shop__item_price}>${(1999).toFixed(2)}</div>
-                </div>
-                <div className={styles.shop__product_item} onClick={() => router.push(`/products/${18}`)}>
-                    <Image alt={"img"} className={styles.shop__item_img} src={img}/>
-                    <div className={styles.shop__item_name}>silver-toned plimsolls</div>
-                    <div className={styles.shop__item_price}>${(1999).toFixed(2)}</div>
-                </div>
-                <div className={styles.shop__product_item} onClick={() => router.push(`/products/${18}`)}>
-                    <Image alt={"img"} className={styles.shop__item_img} src={img}/>
-                    <div className={styles.shop__item_name}>silver-toned plimsolls</div>
-                    <div className={styles.shop__item_price}>${(1999).toFixed(2)}</div>
-                </div>
-                <div className={styles.shop__product_item} onClick={() => router.push(`/products/${18}`)}>
-                    <Image alt={"img"} className={styles.shop__item_img} src={img}/>
-                    <div className={styles.shop__item_name}>silver-toned plimsolls</div>
-                    <div className={styles.shop__item_price}>${(1999).toFixed(2)}</div>
-                </div>
-                <div className={styles.shop__product_item} onClick={() => router.push(`/products/${18}`)}>
-                    <Image alt={"img"} className={styles.shop__item_img} src={img}/>
-                    <div className={styles.shop__item_name}>silver-toned plimsolls</div>
-                    <div className={styles.shop__item_price}>${(1999).toFixed(2)}</div>
-                </div>
-                <div className={styles.shop__product_item} onClick={() => router.push(`/products/${18}`)}>
-                    <Image alt={"img"} className={styles.shop__item_img} src={img}/>
-                    <div className={styles.shop__item_name}>silver-toned plimsolls</div>
-                    <div className={styles.shop__item_price}>${(1999).toFixed(2)}</div>
-                </div>
-                <div className={styles.shop__product_item} onClick={() => router.push(`/products/${18}`)}>
-                    <Image alt={"img"} className={styles.shop__item_img} src={img}/>
-                    <div className={styles.shop__item_name}>silver-toned plimsolls</div>
-                    <div className={styles.shop__item_price}>${(1999).toFixed(2)}</div>
-                </div>
-                <div className={styles.shop__product_item} onClick={() => router.push(`/products/${18}`)}>
-                    <Image alt={"img"} className={styles.shop__item_img} src={img}/>
-                    <div className={styles.shop__item_name}>silver-toned plimsolls</div>
-                    <div className={styles.shop__item_price}>${(1999).toFixed(2)}</div>
-                </div>
-                <div className={styles.shop__product_item} onClick={() => router.push(`/products/${18}`)}>
-                    <Image alt={"img"} className={styles.shop__item_img} src={img}/>
-                    <div className={styles.shop__item_name}>silver-toned plimsolls</div>
-                    <div className={styles.shop__item_price}>${(1999).toFixed(2)}</div>
-                </div>
-                <div className={styles.shop__product_item} onClick={() => router.push(`/products/${18}`)}>
-                    <Image alt={"img"} className={styles.shop__item_img} src={img}/>
-                    <div className={styles.shop__item_name}>silver-toned plimsolls</div>
-                    <div className={styles.shop__item_price}>${(1999).toFixed(2)}</div>
-                </div>
-
+                )}
             </div>
         </>
     );
 };
 
 export default Products;
+
+export async function getStaticProps(context) {
+    const response = await fetch('http://127.0.0.1:8000/api/products')
+    const products = await response.json()
+
+    return {
+        props: {products}
+    }
+
+}

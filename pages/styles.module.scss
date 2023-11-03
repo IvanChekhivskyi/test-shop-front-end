@@ -22,9 +22,12 @@
     }
   }
   &__item_img {
-    width: 16.8rem;
-    height: 18.8rem;
+    max-width: 16.8rem;
+    max-height: 18.8rem;
+    min-width: 16.7rem;
+    min-height: 18.7rem;
     border: 1px dashed grey;
+    position: static;
   }
 
   &__category_img {
@@ -38,6 +41,9 @@
   &__item_name {
     padding-top: 15px;
     font-size: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     text-transform: uppercase;
     font-family: Chandas;
     color: #696969;
@@ -54,10 +60,22 @@
       color: rgba(105,105,105,0.5);
     }
   }
+  &__item_price_block {
+    display: flex;
+    justify-content: center;
+  }
   &__item_price {
     font-size: 14px;
     font-family: Chandas;
     text-align: center;
+  }
+  &__item_price_sale {
+    font-size: 14px;
+    font-family: Chandas;
+    text-align: center;
+    text-decoration-line: line-through;
+    color: gray;
+    margin-right: 1rem;
   }
 
   &__toolbar {
@@ -279,5 +297,17 @@
     &:hover {
       filter: invert(0.2);
     }
+  }
+
+  &__sale_bage {
+    background: black;
+    color: white;
+    position: relative;
+    top: -380px;
+    width: 120px;
+    height: 30px;
+    padding: 5px;
+    text-align: center;
+    margin: auto;
   }
 }
