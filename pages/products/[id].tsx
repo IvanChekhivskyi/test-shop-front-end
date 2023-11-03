@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, {FC, useState} from "react";
 import { useRouter } from 'next/navigation'
 import Products from "../products";
+import config from "tailwindcss/defaultConfig";
 const bag = require('../../img/bag.png');
 const full = require('../../img/full-screen.png');
 const back = require('../../img/arrow-back.png');
@@ -34,7 +35,7 @@ export default function ({product}) {
             <div className={styles.shop__product_view_body}>
                 <div className={styles.shop__product_view_body__side_left}>
                     <div className={styles.shop__color_box} style={{background:`${'gray'}`}}></div>
-                    <img alt={"img"} className={styles.shop__item_img_view} src={`http://127.0.0.1:8000${product.image_path}`}/>
+                    <img alt={"img"} className={styles.shop__item_img_view} src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${product.image_path}`}/>
                 </div>
                 <div className={styles.shop__product_view_body__side_right}>
                     <div className={styles.shop__text_view__header}>{product.name}</div>
@@ -66,7 +67,7 @@ export default function ({product}) {
 };
 
 export async function getServerSideProps({params}) {
-    const response = await fetch(`http://127.0.0.1:8000/api/products/${params.id}`)
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products/${params.id}`)
     const product = await response.json()
     return {
         props: {product},

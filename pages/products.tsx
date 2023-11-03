@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import styles from "./styles.module.scss";
 import Image from 'next/image';
 import {useRouter} from "next/router";
+import config from "tailwindcss/defaultConfig";
 const bag = require('../img/bag.png');
 
 export interface Products {
@@ -69,7 +70,7 @@ const Products: FC<Props> = ({products}) => {
             </div>
             <div className={styles.shop__products_list}>
                 {products.map(e =>
-                <div key={e.id} className={styles.shop__product_item} onClick={() => router.push(`/products/${e.url_key}`)}>
+                <div key={e.id} className={styles.shop__product_item} onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_BASE_URL}/products/${e.url_key}`)}>
                     <img alt={"img"} className={styles.shop__item_img} src={`http://127.0.0.1:8000${e.image_path}`}/>
                     <div className={styles.shop__item_name}>{e.name}</div>
                     <div className={styles.shop__item_price_block}>
@@ -89,9 +90,9 @@ const Products: FC<Props> = ({products}) => {
 
 export default Products;
 
-export async function getStaticProps(context) {
-    const response = await fetch('http://127.0.0.1:8000/api/products')
-    const products = await response.json()
+export const getServerSideProps = async(context) => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products`)
+    const products = await response.json() || [];
 
     return {
         props: {products}
